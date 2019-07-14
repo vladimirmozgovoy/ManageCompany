@@ -1,0 +1,115 @@
+
+
+
+<div class="container-fluid col-lg-12 col-12">
+    <h2 style="margin-top:10%;" class="  ml-5  ">Пользователи</h2>
+  <div class="row col-lg-12 col-12">
+    
+ 
+      <!-- Форма для поиска-->
+    <div  class=" form-inline md-form  row col-lg-12 col-12    ">
+    <div class="search col-lg-4 col-sm-12">
+        <input type="text" [(ngModel)]="searchText" id="inputLGEx" placeholder="Поиск">
+        <i style="color:gray;" class="fa fa-search" aria-hidden="true"></i>
+         
+             
+    </div>
+     
+         
+        
+        
+  
+       
+         
+          <!--Форма для даты -->
+        <div class=" col-lg-4 col-sm-12">
+            <mat-form-field class="  ">
+                <input matInput [matDatepicker]="picker" placeholder="От" (dateChange)="getFrom($event,$http)">
+                <mat-datepicker-toggle matSuffix [for]="picker">
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+        </div>
+         
+          
+      
+            
+            <div class="col-lg-4 col-sm-12">
+                <mat-form-field  class="" >
+                    <input matInput [matDatepicker]="picker1" placeholder="До" (dateChange)="getTo($event)">
+                    <mat-datepicker-toggle matSuffix [for]="picker1">
+                     
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>
+
+            </div>
+           
+        
+  
+   
+   
+  
+  
+    
+   
+  
+    
+  
+  
+  
+  
+  </div>
+
+  
+
+  
+     
+        
+      </div>
+ 
+  
+  
+  </div>
+ 
+  <div class="container-fluid data col-12 col-lg-12 ">
+      <div class="row mt-1 head col-lg-12 col-12">
+          <div class="col-lg-2 col-2">#ID </div>
+          <div class="col-lg-2 col-3">Фамилия</div>
+          <div class="col-lg-2 col-2">Имя</div>
+          <div class="col-lg-2 col-3 ">Дата</div>
+          <div class="col-lg-4 col-2 ">Адрес</div>
+      </div>
+
+<div *ngFor ="let el of elements" class="row col-lg-12 col-12 mt-4">
+
+    <div class="col-lg-2 col-2">{{el.id}} </div>
+    <div class="col-lg-2 col-2">{{el.lastname}}</div>
+    
+    <div class="col-lg-2 col-2 ">{{el.regDate}}</div>
+    <div class="col-lg-4 col-2 ">{{el.address}}</div>
+
+
+
+</div>
+
+
+
+    </div>
+  
+  
+  
+  
+    
+    
+  
+  
+    
+     
+  
+  
+  
+  
+   
+  
+   

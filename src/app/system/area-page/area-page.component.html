@@ -1,0 +1,293 @@
+
+
+
+<div class="container-fluid">
+    <h1 style="margin-left:35%; margin-top:10%; " >Список адресов</h1>
+  <div class="row d-block">
+    
+  
+     <!--
+  
+  
+      
+     -->
+    <div style="margin-left:7%; width:100%" class=" form-inline md-form     ">
+     <!-- Форма для поиска-->
+      <input type="text" [(ngModel)]="searchText" id="inputLGEx" placeholder="Поиск">
+     <i style="color:gray;" class="fa fa-search" aria-hidden="true"></i>
+      
+          
+          
+        <!--
+  
+          форма для типа счетчиков 
+        -->
+          <ng-multiselect-dropdown style="padding-left:10%;width:30%;" class=" col-lg-3 col-md-6 col-sm-6 "
+          [placeholder]="'Тип счетчиков'"
+          [data]="dropdownList"
+          [(ngModel)]="selectedItems"
+          [settings]="dropdownSettings"
+          (onSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAll($event)"
+          (onDeSelect)="onDeSelect($event)"
+          >
+          </ng-multiselect-dropdown>
+        
+  
+       
+  
+   
+   
+  
+  
+    
+   
+  
+    
+  
+  
+  
+  
+  </div>
+  
+  <div class="container-fluid  " style="margin-left:5vmax;">
+      <div class="row">
+          <div class="col-lg-2">Город</div>
+          <div class="col-lg-3">Улица</div>
+          <div class="col-lg-2">Номер дома</div>
+          <div class="col-lg-5">Типы счетчиков</div>
+          
+      </div>
+      <div *ngFor="let el of elements" class="container-fluid">
+          
+        <div  class="row mt-5" (click)="more.toggle()  ">
+              <div class="col-lg-2">{{el.city}}</div>
+              <div class="col-lg-3">{{el.street}}</div>
+              <div class="col-lg-2">{{el.home+el.liter}}</div>
+              <div class="col-lg-5">
+                
+            <div class="col-lg-4"> 
+            <ul class="list-group">
+              <li class="list-group-item">{{el.hotwater}}</li>
+              <li class="list-group-item">{{el.coldwater}}</li>
+              <li class="list-group-item">{{el.heating}}</li>
+              <li class="list-group-item">{{el.electric}}</li>
+              <li class="list-group-item">{{el.gas}}</li>
+            </ul>
+            
+            </div>
+           
+            </div>
+             
+          </div>
+          
+          
+           
+         
+         <div style="margin-left:50vh" class="row  ">
+
+
+<div class="col-lg-2">
+  <button type="button" (click)="editWindow(el.aid,el.city,
+  el.street,el.home,el.liter,
+  el.gas_p,el.electric_p,el.heating_p,el.hotwater_p,el.coldwater_p,el.apparts,edit
+  
+  )" class="  btn btn-outline-primary mt-2">Изменить</button> </div>
+<div class="col-lg-2"><button type="button"
+   (click)="Delete(el.aid)" class="
+     btn btn-outline-danger mt-2">Удалить</button> </div>
+         </div>
+          
+      
+      
+        </div>
+        
+      </div>
+  
+  
+  </div>
+  
+  
+  <button style="margin-left:70%; margin-bottom: 2%;" 
+  class="btn btn-lg btn-outline-info" (click)="open(content)">Добавить </button>
+  
+    
+<!--Модальное окно для добавления адресса--->
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Добавить адрес</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Название города</label>
+      <input [ngClass]="class"  [(ngModel)]="name_city" name="name_city" type="text" class="form-control" 
+      id="exampleFormControlInput1" placeholder={{add_pl_title}}>
+    </div>
+    
+    
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Название улицы</label>
+        <input [ngClass]="class"  [(ngModel)]="name_street" name="name_street" type="text" class="form-control" 
+        id="exampleFormControlInput1" placeholder={{add_pl_title}}>
+      </div>
+      <div class="form-group">
+          <label for="exampleFormControlInput1">Номер</label>
+          <input [ngClass]="class"  [(ngModel)]="number" name="number" type="text" class="form-control" 
+          id="exampleFormControlInput1" placeholder={{add_pl_title}}>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Литер</label>
+            <input [ngClass]="class"  [(ngModel)]="liter" name="liter" type="text" class="form-control" 
+            id="exampleFormControlInput1" placeholder={{add_pl_title}}>
+          </div>
+          <div class="form-group">
+              <label for="exampleFormControlInput1">Количество квартир</label>
+              <input [ngClass]="class"  [(ngModel)]="apparts" name="apparts" type="text" class="form-control" 
+              id="exampleFormControlInput1" placeholder={{add_pl_title}}>
+            </div>
+          <div class="form-check">
+              <input class="form-check-input" [(ngModel)]="gas" name="gas"  type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Газ
+              </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" [(ngModel)]="electricity" name="electricity" type="checkbox" value="" id="defaultCheck1">
+                <label class="form-check-label" for="defaultCheck1">
+                  Электричество
+                </label>
+              </div>
+              <div class="form-check">
+                  <input class="form-check-input" [(ngModel)]="heating" name="heating" type="checkbox" value="" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    Отопление
+                  </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input"[(ngModel)]="hot_water" name="hot_water" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Горячая вода
+                    </label>
+                  </div>
+                  <div class="form-check">
+                      <input class="form-check-input" [(ngModel)]="cold_water" name="cold_water" type="checkbox" value="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Холодная вода
+                      </label>
+                  
+           
+                  </div>
+
+</form>
+   </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="addAdress()">Добавить</button>
+    </div>
+  </ng-template>
+
+
+<!-- Модальное окно для редактирования адреса -->
+<ng-template #edit let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Редактрировать адрес</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Название города</label>
+    <input [ngClass]="class"  [(ngModel)]="edit_city" name="edit_city" type="text" class="form-control" 
+    id="exampleFormControlInput1" placeholder={{add_pl_title}}>
+  </div>
+  
+  
+  <div class="form-group">
+      <label for="exampleFormControlInput1">Название улицы</label>
+      <input [ngClass]="class"  [(ngModel)]="edit_street" name="edit_street" type="text" class="form-control" 
+      id="exampleFormControlInput1" placeholder={{add_pl_title}}>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Номер</label>
+        <input [ngClass]="class"  [(ngModel)]="edit_number" name="edit_number" type="text" class="form-control" 
+        id="exampleFormControlInput1" placeholder={{add_pl_title}}>
+      </div>
+
+      <div class="form-group">
+          <label for="exampleFormControlInput1">Литер</label>
+          <input [ngClass]="class"  [(ngModel)]="edit_liter" name="edit_liter" type="text" class="form-control" 
+          id="exampleFormControlInput1" placeholder={{add_pl_title}}>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Количество квартир</label>
+            <input [ngClass]="class"  [(ngModel)]="edit_apparts"
+             name="edit_apparts" type="text" class="form-control" 
+            id="exampleFormControlInput1" placeholder={{add_pl_title}}>
+          </div>
+        <div class="form-check">
+            <input class="form-check-input" [(ngModel)]="edit_gas" 
+            name="edit_gas"  type="checkbox" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+              Газ
+            </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" [(ngModel)]="edit_electricity" 
+              name="edit_electricity" type="checkbox"  id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Электричество
+              </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" [(ngModel)]="edit_heating" name="edit_heating" type="checkbox" 
+                 id="defaultCheck1">
+                <label class="form-check-label" for="defaultCheck1">
+                  Отопление
+                </label>
+              </div>
+              <div class="form-check">
+                  <input class="form-check-input"[(ngModel)]="edit_hot_water" 
+                  name="edit_hot_water" type="checkbox"  id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    Горячая вода
+                  </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" [(ngModel)]="edit_cold_water"
+                     name="edit_cold_water" type="checkbox"  id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Холодная вода
+                    </label>
+                
+         
+                </div>
+
+</form>
+ </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="Edit()">Изменить</button>
+  </div>
+</ng-template>
+
+
+
+
+    
+  
+  
+    
+     
+  
+  
+  
+  
+   
+  
+   

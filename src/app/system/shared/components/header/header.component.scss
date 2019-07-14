@@ -1,0 +1,49 @@
+.dark-line {
+    background-color: #EFEFEF;
+  color: black;
+}
+.title{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+h1{
+  vertical-align: middle;
+  font-weight: 400;
+}
+button{
+  width: 150px;
+}
+@media (max-width: 1199px) {
+    .drop {
+    display: none;
+  }
+  .title {
+    display: none;
+  }
+  .logo{
+    display: none;
+  }
+  * {
+    font-size: 12px ;
+  }
+  button {
+    padding: 7px;
+  }
+}
+@media (max-width: 860px) {
+  * {
+      font-size: 12px ;
+  }
+  button{
+      width: 126px;
+      font-size: 10px !important;
+      padding: 5px;
+  }
+  h2 {
+      font-size: 20px;
+  }
+}
+.navbar-default {
+  background-color: gray;
+  border-color: gray;
+}

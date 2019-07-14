@@ -1,0 +1,156 @@
+
+
+
+<div class="container-fluid">
+    <h1  style="margin-left:40%; margin-top:10%;" >Услуги
+    
+    </h1>
+  
+   
+
+   
+    
+  
+  
+    
+  
+  
+  
+ 
+  <table style=" margin-top:3%;width:88%; margin-left:5%;" mdbTable class="table table-striped">
+      <thead>
+        <tr>
+          <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let el of elements" (click)="more.toggle()">
+           
+          <th scope="row" >{{el.name}} </th>
+          <td>{{el.category}}</td>
+          <td> {{el.description}}
+
+                <div  mdbCollapse #more="bs-collapse" class="mt-4">
+                        <button type="button"  class="btn btn-outline-primary" (click)="editService(el.sid,el.name,el.category,el.description,edit)">Изменить </button>
+                        <button type="button" class="btn btn-outline-danger" (click)="deleteServ(el.sid)">Удалить </button>
+                       </div>
+          </td>
+               
+              
+         
+             
+            
+      
+         
+        
+        
+        </tr>
+      </tbody>
+    </table>
+  
+  <!-- Модальное окно для добавление услуги -->
+  
+    <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Добавить услугу</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Название услуги</label>
+              <input [ngClass]="class" [(ngModel)]="service_name" name="service_name" type="text" class="form-control" 
+              id="exampleFormControlInput1" placeholder={{plName}}>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Категория услуги</label>
+              
+              <!-- <select [(ngModel)]="service_category" name="service_category" class="browser-default custom-select"  >  -->
+                <select [(ngModel)]="service_category" name="service_category"  class="browser-default custom-select">
+                <option [attr.selected]="selected"  >Услуги сервиса твой дом</option>
+                <option>Вызов мастера</option>
+                <option>Доставка еды</option>
+                <option>Прочие услуги</option>
+              </select>
+            
+            
+            </div>
+            
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Описание</label>
+              <textarea [ngClass]="class" [(ngModel)]="service_description" name="service_description"
+               class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder={{plDes}}></textarea>
+            </div>
+          </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="send()">Добавить услугу</button>
+            </div>
+          </ng-template>
+          
+          
+         
+
+
+       <!-- Модальное окно для редактирование услуги -->
+  
+    
+          <ng-template #edit let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Изменить услугу</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form #edit="ngForm">
+            <div class="form-group">
+              <label for="editName">Название услуги</label>
+              <input  type="text" [(ngModel)]="nameService"   name="editServiceName"  class="form-control pl"  
+              id="editServiceName" placeholder="Вы не ввели название услуги" >
+            </div>
+            <div class="form-group">
+              <label for="editCategory">Категория услуги</label>
+              <select [(ngModel)]="categoryService" name="service_category" class="form-control" id="editSelectCategory">
+                <option>Услуги сервиса твой дом</option>
+                <option>Вызов мастера</option>
+                <option>Доставка еды</option>
+                <option>Прочие услуги</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="descriptionEdit">Описание</label>
+              <textarea  
+              [(ngModel)]="descriptionService" 
+              name="descriptionService"
+              placeholder="Вы не ввели описание услуги" class="form-control pl" id="descriptionEditService" rows="3" ></textarea>
+            
+            </div>
+          </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="editServ()">Изменить</button>
+            </div>
+          </ng-template>
+        
+<button style="margin-left: 80%; margin-bottom: 5%; "  class=" fixed-bottom btn btn-lg btn-outline-info" (click)="open(content)">Добавить</button>
+
+          
+  
+   
+  
+  
+        </div>
+  
+    
+     
+  
+  
+  
+  
+   
+  
+   

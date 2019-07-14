@@ -1,0 +1,142 @@
+<div class="container-fluid">
+
+<div  class="row mt-2">
+        
+    <div class="col-12">
+
+        <h1 style="margin-left:40%; margin-top:10%;" >Статистика</h1>
+    </div>
+    
+    <div id="month" class="col-lg-4 col-md-6 col-sm-6" >
+            <h4 class="mt-4">Общая сумма платежей</h4>
+                <canvas mdbChart
+                    [chartType]="barType"
+                    [datasets]="barDatasets"
+                    [labels]="barLabels"
+                    [colors]="barColors"
+                    [options]="barOptions"
+                    [legend]="true"
+                    (chartHover)="barHovered($event)"
+                    (chartClick)="barClicked($event)">
+                </canvas>
+              </div>
+            
+            
+
+              <div  id="quanty" class="col-lg-4 col-md-6 col-sm-6" >
+                    <h4 class="mt-4">Общий процент пользователей</h4>
+                    <canvas mdbChart
+                        [chartType]="chartType"
+                        [datasets]="chartDatasets"
+                        [labels]="chartLabels"
+                        [colors]="chartColors"
+                        [options]="chartOptions"
+                        [legend]="true"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)">
+                    </canvas>
+                  </div>
+                
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+            <h4 class="mt-4">Самые популярные услуги</h4>
+                  <table   mdbTable striped="true" >
+                        <thead>
+                          <tr>
+                            <th >№ </th>
+                            <th >Название </th>
+                            <th >Кол-во Заказов </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr mdbTableCol  *ngFor="let el of elements" >
+                            <th scope="row">{{el.id+1}}</th>
+                            <td>{{el.name}}</td>
+                            <td>{{el.count}}</td>
+                            
+                          </tr>
+                         
+                        </tbody>
+                      </table>
+
+
+                     
+
+                  </div>
+
+
+
+
+                <div class="col-lg-4 col-md-6 col-sm-6"> 
+                    <h4 >Количество пользователей</h4>
+                  <div id="percent" >
+                        <canvas mdbChart
+                            [chartType]="perType"
+                            [datasets]="perDatasets"
+                            [labels]="perLabels"
+                            [colors]="perColors"
+                            [options]="perOptions"
+                            [legend]="true"
+                            (chartHover)="perHovered($event)"
+                            (chartClick)="perClicked($event)">
+                        </canvas>
+                    </div>
+                
+                </div>
+                
+                
+                
+                <div id="month" class="col-lg-4 col-md-6 col-sm-6" >
+                        <h4>Количество поданных платежей</h4>
+                            <canvas mdbChart
+                                [chartType]="pType"
+                                [datasets]="pDatasets"
+                                [labels]="pLabels"
+                                [colors]="pColors"
+                                [options]="pOptions"
+                                [legend]="true"
+                                (chartHover)="barHovered($event)"
+                                (chartClick)="barClicked($event)">
+                            </canvas>
+                          </div>
+                
+                          <div id="month" class="col-lg-4 col-md-6 col-sm-6" >
+                                <h4>Количество заказанных услуг</h4>
+                                    <canvas mdbChart
+                                        [chartType]="sType"
+                                        [datasets]="sDatasets"
+                                        [labels]="sLabels"
+                                        [colors]="sColors"
+                                        [options]="sOptions"
+                                        [legend]="true"
+                                        (chartHover)="barHovered($event)"
+                                        (chartClick)="barClicked($event)">
+                                    </canvas>
+                                  </div>
+                
+                
+                
+                </div>
+
+               
+       
+        
+        
+       
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+

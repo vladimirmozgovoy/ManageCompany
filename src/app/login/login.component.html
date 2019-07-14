@@ -1,0 +1,55 @@
+<div class="container-fluid">
+    <div class="col" >
+      
+      
+    </div>  
+    
+   
+<div class="col w-50" style="margin-left:25%;">
+    <form style="margin-top:10%;"  class=" text-center border border-light p-5 col">
+    
+        <p class="h4 mb-4 ">Войдите для работы</p>
+     
+  
+
+  <!-- Email -->
+  <input [(ngModel)]="login" name="login" type="text" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail" />
+
+  <!-- Password -->
+  <input [(ngModel)]="password" name="password" type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Пароль" (ngModel)="password">
+
+  <div class="d-flex justify-content-around">
+    <div>
+      <!-- Remember me -->
+      <input type="checkbox" class="form-check-input" id="materialLoginFormRemember">Оставаться в системе?
+    </div>
+    <div>
+      <!-- Forgot password -->
+      <a href="">Забыли пароль ?</a>
+    </div>
+  </div>
+
+  <!-- Sign in button -->
+  <button mdbBtn color="default" block="true" class="my-4" type="submit" (click)="send()">Войти</button>
+
+  <!-- Register -->
+ 
+   <p style="margin-top:5%;"> <a href="">Зарегистрироваться</a></p> 
+
+
+  <!-- Social login -->
+
+
+</form>
+
+</div>
+
+
+
+
+
+
+
+
+
+</div>

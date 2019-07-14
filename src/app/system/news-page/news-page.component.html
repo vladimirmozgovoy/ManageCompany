@@ -1,0 +1,132 @@
+
+
+
+
+
+
+<!-- Модальное окно для добавление новости -->
+<ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Добавить новость</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Название новости</label>
+          <input [ngClass]="class"  [(ngModel)]="add_TitleNews" name="add_TitleNews" type="text" class="form-control" 
+          id="exampleFormControlInput1" placeholder={{add_pl_title}}>
+        </div>
+        
+        
+        <div  class="form-group">
+          <label for="exampleFormControlTextarea1">Описание</label>
+          <textarea  [ngClass]="class" [(ngModel)]="add_DescriptionNews" name="add_DescriptionNews" 
+          class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder={{add_pl_description}}></textarea>
+        </div>
+        <label for="exampleFormControlTextarea1">Загрузить изображение</label>
+        <div class=" form-group input-default-wrapper mt-1">
+         
+                
+              
+                <input type="file" (change)="onFileSelected($event)" id="file-with-current" class="input-default-js">
+              
+                <label class="label-for-default-js rounded-right mb-3" for="file-with-current">
+                  <span class="span-choose-file " id={{choose}}>{{pl_img}}</span>
+              
+                  <div class="float-right span-browse">Обзор</div>
+              
+                </label>
+              
+              </div>
+    
+    </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="Upload()">Добавить</button>
+        </div>
+      </ng-template>
+
+
+<!-- Модальное окно для редактирования новости -->
+      <ng-template #edit let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Изменить новость</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+        <div class="form-group">
+          <label  for="exampleFormControlInput1">Название новости</label>
+          <input  [(ngModel)]="titleNews"  name="titleNews" type="text" class="form-control pl"  
+          id="exampleFormControlInput1" placeholder="Вы не ввели название новости">
+        </div>
+        
+        
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Описание</label>
+          <textarea [ngClass]="t" [(ngModel)]="descriptionNews" name="descriptionNews" class="form-control pl" 
+          id="exampleFormControlTextarea1" rows="3" placeholder="Вы не ввели описание новости"></textarea>
+        </div>
+    
+        <div class="input-default-wrapper mt-3">
+                <label for="exampleFormControlInput1">Изменить изображение</label>
+               
+              
+                <input type="file" (change)="imgChange($event)" id="file-with-current" class="input-default-js">
+              
+                <label class="label-for-default-js rounded-right mb-3" for="file-with-current"><span class="span-choose-file">Выберите изображение</span>
+              
+                  <div class="float-right span-browse">Обзор</div>
+              
+                </label>
+              
+              </div>
+    
+    </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="Edit()">Изменить</button>
+        </div>
+      </ng-template>
+
+
+
+
+      <h1 style="margin-top:10%;" align="center">Новости</h1>
+
+
+
+
+<!--Таблица новостей-->
+<table style="margin-left:6%; width:80%; border:none;"  mdbTable  >
+        
+        <tbody>
+          <tr *ngFor="let el of elements">
+             
+            <th><img width="300" src="{{el.img}}"/></th>
+            <td><h4 >{{el.title}}</h4>
+            <p>{{el.description}}</p>
+            <button type="button" class="btn btn-outline-primary" (click)="editWindow(el.img,el.nid,el.title,el.description,edit)">Изменить</button>
+            <button type="button" class="btn btn-outline-danger" (click)="deleteNews(el.nid)">Удалить</button>
+            </td>
+            
+              
+           
+            
+          
+          </tr>
+         
+
+        </tbody>
+      
+    </table>
+   <!--Добавить новость-->
+    <button style="margin-left:70%; margin-bottom: 2%;" class="btn btn-lg btn-outline-info" (click)="open(content)">Добавить </button>
+
+
+    
